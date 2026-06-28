@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شاكال للزيوت | SHAKAL OIL</title>
+  <meta property="og:title" content="شاكال للزيوت - SHAKAL OIL">
+  <meta property="og:description" content="أفضل مركز لتغيير الزيوت والفلاتر وصيانة السيارات في العراق">
+  <meta property="og:image" content="https://shakal-oil.web.app/og-image.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, where, orderBy } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    window.db = getFirestore(app);
+    window.auth = getAuth(app);
+    window.firebaseFns = { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, where, orderBy, signInWithEmailAndPassword, signOut, onAuthStateChanged };
+  </script>
+</head>
+<body>
+
+<!-- ===== PARTICLE BACKGROUND ===== -->
+<div id="particles"></div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="28" stroke="url(#goldGrad)" stroke-width="2.5"/>
+          <path d="M30 8 L38 22 L52 24 L42 34 L44 48 L30 41 L16 48 L18 34 L8 24 L22 22 Z" fill="url(#goldGrad2)" opacity="0.9"/>
+          <text x="50%" y="56%" text-anchor="middle" dominant-baseline="middle" font-family="Orbitron" font-weight="900" font-size="14" fill="#0a0a0a">S</text>
+          <defs>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFD700"/>
+              <stop offset="100%" stop-color="#FF8C00"/>
+            </linearGradient>
+            <linearGradient id="goldGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFD700"/>
+              <stop offset="50%" stop-color="#FFA500"/>
+              <stop offset="100%" stop-color="#FF6B00"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-ar">شاكال</span>
+        <span class="logo-en">SHAKAL OIL</span>
+      </div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">الرئيسية</a>
+      <a href="#services">خدماتنا</a>
+      <a href="#brands">الماركات</a>
+      <a href="#booking">حجز موعد</a>
+      <a href="#contact">تواصل معنا</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-glass" onclick="showModal('loginModal')">تسجيل الدخول</button>
+      <button class="btn-gold" onclick="showModal('registerModal')">انضم إلينا</button>
+    </div>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero" id="home">
+  <div class="hero-bg-orbs">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">🏆 أفضل مركز زيوت في العراق</div>
+    <h1 class="hero-title">
+      <span class="title-main">شاكال</span>
+      <span class="title-sub">للزيوت والصيانة</span>
+    </h1>
+    <p class="hero-desc">زيوت عالمية أصلية 100% • تغيير فلاتر • ضخ هواء • صيانة شاملة<br>نخدم سيارتك بأعلى معايير الجودة</p>
+    <div class="hero-btns">
+      <button class="btn-primary pulse" onclick="showModal('bookingModal')">
+        <span>📅</span> احجز موعدك الآن
+      </button>
+      <a href="tel:+9647734735149" class="btn-outline">
+        <span>📞</span> اتصل بنا
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card glass">
+        <span class="stat-num">500+</span>
+        <span class="stat-label">زبون راضٍ</span>
+      </div>
+      <div class="stat-card glass">
+        <span class="stat-num">15+</span>
+        <span class="stat-label">ماركة عالمية</span>
+      </div>
+      <div class="stat-card glass">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">زيوت أصلية</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="oil-can-3d">
+      <div class="can-glow"></div>
+      <img src="https://i.imgur.com/placeholder.png" alt="Zepro Oil" class="hero-oil-img" id="heroOilImg" onerror="this.style.display='none'">
+      <div class="can-rings">
+        <div class="ring ring1"></div>
+        <div class="ring ring2"></div>
+        <div class="ring ring3"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="section services-section" id="services">
+  <div class="section-header">
+    <span class="section-tag">ما نقدمه</span>
+    <h2 class="section-title">خدماتنا المتميزة</h2>
+    <p class="section-sub">كل ما تحتاجه سيارتك في مكان واحد</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card glass-card">
+      <div class="service-icon" style="background: linear-gradient(135deg, #FFD700, #FF8C00);">🛢️</div>
+      <h3>تغيير الزيت</h3>
+      <p>أفضل الزيوت العالمية الأصلية لجميع أنواع السيارات</p>
+      <button class="btn-service" onclick="showModal('bookingModal')">احجز الآن</button>
+    </div>
+    <div class="service-card glass-card">
+      <div class="service-icon" style="background: linear-gradient(135deg, #00BFFF, #0066FF);">🔧</div>
+      <h3>تبديل الفلاتر</h3>
+      <p>فلاتر زيت، هواء، وقود، مكيف - جميع الأنواع</p>
+      <button class="btn-service" onclick="showModal('bookingModal')">احجز الآن</button>
+    </div>
+    <div class="service-card glass-card">
+      <div class="service-icon" style="background: linear-gradient(135deg, #00FF88, #00CC55);">💧</div>
+      <h3>تبديل الماء</h3>
+      <p>تغيير ماء الراديتر وسوائل التبريد الأصلية</p>
+      <button class="btn-service" onclick="showModal('bookingModal')">احجز الآن</button>
+    </div>
+    <div class="service-card glass-card">
+      <div class="service-icon" style="background: linear-gradient(135deg, #FF6B6B, #FF0044);">⚙️</div>
+      <h3>صيانة شاملة</h3>
+      <p>فحص كامل للسيارة وصيانة جميع المحاور الأساسية</p>
+      <button class="btn-service" onclick="showModal('bookingModal')">احجز الآن</button>
+    </div>
+    <div class="service-card glass-card">
+      <div class="service-icon" style="background: linear-gradient(135deg, #9B59B6, #6C3483);">🛞</div>
+      <h3>نفخ العجلات</h3>
+      <p>ضبط ضغط الهواء لجميع أنواع الإطارات</p>
+      <button class="btn-service" onclick="showModal('bookingModal')">احجز الآن</button>
+    </div>
+    <div class="service-card glass-card">
+      <div class="service-icon" style="background: linear-gradient(135deg, #F39C12, #D35400);">🔍</div>
+      <h3>فحص شامل</h3>
+      <p>تشخيص دقيق للعطل وتقرير كامل عن حالة سيارتك</p>
+      <button class="btn-service" onclick="showModal('bookingModal')">احجز الآن</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OIL BRANDS ===== -->
+<section class="section brands-section" id="brands">
+  <div class="section-header">
+    <span class="section-tag">ماركاتنا</span>
+    <h2 class="section-title">الزيوت المتوفرة</h2>
+    <p class="section-sub">نتعامل مع أفضل ماركات الزيوت العالمية</p>
+  </div>
+  <div class="brands-showcase">
+    <div class="brand-card glass-card featured">
+      <div class="brand-badge">الأكثر مبيعاً</div>
+      <div class="brand-img-container">
+        <div class="oil-visual zepro-euro">
+          <div class="oil-can-mini">
+            <div class="can-label" style="background: linear-gradient(135deg, #1a1a2e, #16213e); border: 2px solid #FFD700;">
+              <span class="brand-name-label" style="color: #FFD700;">ZEPRO</span>
+              <span class="viscosity-label" style="color: white;">EURO SPEC</span>
+              <span class="visc-num" style="color: #FFD700;">10W-30</span>
+              <span class="synth-label" style="color: #aaa;">100% Synthetic</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3>Zepro Euro Spec</h3>
+      <p>10W-30 | API SP-CF | ILSAC GF-6</p>
+      <div class="brand-specs">
+        <span class="spec-tag">Toyota/Lexus</span>
+        <span class="spec-tag">Hyundai/KIA</span>
+        <span class="spec-tag">GM</span>
+        <span class="spec-tag">Mercedes</span>
+      </div>
+    </div>
+    <div class="brand-card glass-card">
+      <div class="brand-img-container">
+        <div class="oil-visual zepro-eco">
+          <div class="oil-can-mini">
+            <div class="can-label" style="background: linear-gradient(135deg, #0d4a2b, #1a6b3a); border: 2px solid #00FF88;">
+              <span class="brand-name-label" style="color: #00FF88;">ZEPRO</span>
+              <span class="viscosity-label" style="color: #c8f5dc;">ECO MEDALIST</span>
+              <span class="visc-num" style="color: #00FF88;">0W-16</span>
+              <span class="synth-label" style="color: #aaa;">Hybrid Formula</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3>Zepro Eco Medalist</h3>
+      <p>0W-16 | API SP-RC | ILSAC GF-6B</p>
+      <div class="brand-specs">
+        <span class="spec-tag">Toyota</span>
+        <span class="spec-tag">BMW</span>
+        <span class="spec-tag">Hyundai</span>
+        <span class="spec-tag">Hybrid Cars</span>
+      </div>
+    </div>
+    <div class="brand-card glass-card">
+      <div class="brand-img-container">
+        <div class="oil-visual mobil">
+          <div class="oil-can-mini">
+            <div class="can-label" style="background: linear-gradient(135deg, #cc0000, #990000); border: 2px solid #ff4444;">
+              <span class="brand-name-label" style="color: white; font-size: 1.2rem;">Mobil 1</span>
+              <span class="viscosity-label" style="color: #ffcccc;">Full Synthetic</span>
+              <span class="visc-num" style="color: white;">5W-30</span>
+              <span class="synth-label" style="color: #ffaaaa;">Advanced Formula</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3>Mobil 1</h3>
+      <p>5W-30 | Full Synthetic</p>
+      <div class="brand-specs">
+        <span class="spec-tag">All Engines</span>
+        <span class="spec-tag">High Performance</span>
+      </div>
+    </div>
+    <div class="brand-card glass-card">
+      <div class="brand-img-container">
+        <div class="oil-visual shell">
+          <div class="oil-can-mini">
+            <div class="can-label" style="background: linear-gradient(135deg, #cc6600, #994400); border: 2px solid #FFD700;">
+              <span class="brand-name-label" style="color: #FFD700; font-size: 1.1rem;">Shell Helix</span>
+              <span class="viscosity-label" style="color: #ffe0aa;">Ultra Synthetic</span>
+              <span class="visc-num" style="color: #FFD700;">5W-40</span>
+              <span class="synth-label" style="color: #ffcc88;">PurePlus Technology</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3>Shell Helix Ultra</h3>
+      <p>5W-40 | Full Synthetic</p>
+      <div class="brand-specs">
+        <span class="spec-tag">European Cars</span>
+        <span class="spec-tag">Sports</span>
+      </div>
+    </div>
+    <div class="brand-card glass-card">
+      <div class="brand-img-container">
+        <div class="oil-visual castrol">
+          <div class="oil-can-mini">
+            <div class="can-label" style="background: linear-gradient(135deg, #003366, #00264d); border: 2px solid #00aaff;">
+              <span class="brand-name-label" style="color: #00ccff; font-size: 1.1rem;">Castrol EDGE</span>
+              <span class="viscosity-label" style="color: #aaddff;">Titanium FST</span>
+              <span class="visc-num" style="color: #00ccff;">5W-30</span>
+              <span class="synth-label" style="color: #88ccff;">Full Synthetic</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3>Castrol EDGE</h3>
+      <p>5W-30 | Titanium Technology</p>
+      <div class="brand-specs">
+        <span class="spec-tag">BMW</span>
+        <span class="spec-tag">Ford</span>
+        <span class="spec-tag">VW</span>
+      </div>
+    </div>
+    <div class="brand-card glass-card">
+      <div class="brand-img-container">
+        <div class="oil-visual total">
+          <div class="oil-can-mini">
+            <div class="can-label" style="background: linear-gradient(135deg, #1a3a1a, #0d260d); border: 2px solid #88cc00;">
+              <span class="brand-name-label" style="color: #aaff00; font-size: 1.1rem;">Total Quartz</span>
+              <span class="viscosity-label" style="color: #ccff66;">INEO ECS</span>
+              <span class="visc-num" style="color: #aaff00;">5W-30</span>
+              <span class="synth-label" style="color: #88cc44;">PSA Approved</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3>Total Quartz</h3>
+      <p>5W-30 | ACEA C2/C3</p>
+      <div class="brand-specs">
+        <span class="spec-tag">Peugeot</span>
+        <span class="spec-tag">Citroen</span>
+        <span class="spec-tag">Renault</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAP / LOCATION ===== -->
+<section class="section location-section" id="location">
+  <div class="section-header">
+    <span class="section-tag">موقعنا</span>
+    <h2 class="section-title">تعال إلينا</h2>
+    <p class="section-sub">اضغط على الخريطة للحصول على الاتجاهات</p>
+  </div>
+  <div class="location-wrapper">
+    <div class="location-info glass-card">
+      <div class="info-item">
+        <span class="info-icon">📍</span>
+        <div>
+          <strong>العنوان</strong>
+          <p>بغداد، العراق</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">📞</span>
+        <div>
+          <strong>هاتف</strong>
+          <p><a href="tel:+9647734735149">+964 773 473 5149</a></p>
+        </div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">📧</span>
+        <div>
+          <strong>إيميل</strong>
+          <p><a href="mailto:oilshakal@gmail.com">oilshakal@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">🕐</span>
+        <div>
+          <strong>أوقات العمل</strong>
+          <p>السبت - الخميس: 8 ص - 8 م</p>
+        </div>
+      </div>
+      <a href="https://maps.google.com/?q=33.164848,44.439926" target="_blank" class="btn-primary map-btn">
+        🗺️ افتح في خرائط جوجل
+      </a>
+    </div>
+    <div class="map-container">
+      <a href="https://maps.google.com/?q=33.164848,44.439926" target="_blank" class="map-link-wrapper">
+        <div class="map-overlay-btn">
+          <span>🗺️</span>
+          <span>اضغط لفتح الخريطة</span>
+        </div>
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.8!2d44.439926!3d33.164848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDA5JzU0LjUiTiA0NMKwMjYnMjMuNyJF!5e0!3m2!1sar!2siq!4v1"
+          width="100%" height="100%" style="border:0; pointer-events:none;" allowfullscreen loading="lazy">
+        </iframe>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT / SOCIAL ===== -->
+<section class="section contact-section" id="contact">
+  <div class="section-header">
+    <span class="section-tag">تواصل معنا</span>
+    <h2 class="section-title">نحن هنا لخدمتك</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-form glass-card">
+      <h3>أرسل رسالتك</h3>
+      <form id="contactForm" onsubmit="submitContact(event)">
+        <div class="form-group">
+          <input type="text" placeholder="اسمك الكريم" required id="contactName">
+        </div>
+        <div class="form-group">
+          <input type="tel" placeholder="رقم هاتفك" required id="contactPhone">
+        </div>
+        <div class="form-group">
+          <textarea placeholder="رسالتك..." rows="4" required id="contactMessage"></textarea>
+        </div>
+        <button type="submit" class="btn-primary full-width">إرسال الرسالة 📨</button>
+      </form>
+    </div>
+    <div class="social-links glass-card">
+      <h3>تابعنا على</h3>
+      <div class="socials">
+        <a href="https://www.tiktok.com/@oilshakal" target="_blank" class="social-btn tiktok">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.83a8.16 8.16 0 0 0 4.77 1.52V6.93a4.85 4.85 0 0 1-1-.24z"/></svg>
+          <span>TikTok</span>
+          <span class="social-handle">@oilshakal</span>
+        </a>
+        <a href="https://www.instagram.com/oilshakal/" target="_blank" class="social-btn instagram">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          <span>Instagram</span>
+          <span class="social-handle">@oilshakal</span>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61591248457272" target="_blank" class="social-btn facebook">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <span>Facebook</span>
+          <span class="social-handle">Shakal Oil</span>
+        </a>
+        <a href="https://wa.me/9647734735149" target="_blank" class="social-btn whatsapp">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          <span>WhatsApp</span>
+          <span class="social-handle">+964 773 473 5149</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-logo">
+      <div class="logo-icon small">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="28" stroke="url(#goldGrad3)" stroke-width="2.5"/>
+          <path d="M30 8 L38 22 L52 24 L42 34 L44 48 L30 41 L16 48 L18 34 L8 24 L22 22 Z" fill="url(#goldGrad4)" opacity="0.9"/>
+          <text x="50%" y="56%" text-anchor="middle" dominant-baseline="middle" font-family="Orbitron" font-weight="900" font-size="14" fill="#0a0a0a">S</text>
+          <defs>
+            <linearGradient id="goldGrad3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFD700"/><stop offset="100%" stop-color="#FF8C00"/></linearGradient>
+            <linearGradient id="goldGrad4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFD700"/><stop offset="50%" stop-color="#FFA500"/><stop offset="100%" stop-color="#FF6B00"/></linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <span>شاكال للزيوت</span>
+    </div>
+    <p>© 2025 شاكال للزيوت والصيانة. جميع الحقوق محفوظة.</p>
+  </div>
+</footer>
+
+<!-- ===== MODALS ===== -->
+
+<!-- Login Modal -->
+<div class="modal" id="loginModal">
+  <div class="modal-content glass-card">
+    <button class="modal-close" onclick="closeModal('loginModal')">✕</button>
+    <div class="modal-header">
+      <div class="modal-icon">🔐</div>
+      <h2>تسجيل الدخول</h2>
+    </div>
+    <form onsubmit="loginUser(event)">
+      <div class="form-group">
+        <label>البريد الإلكتروني</label>
+        <input type="email" id="loginEmail" placeholder="example@email.com" required>
+      </div>
+      <div class="form-group">
+        <label>كلمة المرور</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-primary full-width">دخول</button>
+    </form>
+    <p class="modal-switch">ليس لديك حساب؟ <a onclick="switchModal('loginModal','registerModal')">سجل الآن</a></p>
+    <p class="modal-switch"><a onclick="switchModal('loginModal','adminModal')">دخول الإدارة</a></p>
+    <div id="loginError" class="error-msg"></div>
+  </div>
+</div>
+
+<!-- Register Modal -->
+<div class="modal" id="registerModal">
+  <div class="modal-content glass-card">
+    <button class="modal-close" onclick="closeModal('registerModal')">✕</button>
+    <div class="modal-header">
+      <div class="modal-icon">👤</div>
+      <h2>إنشاء حساب جديد</h2>
+    </div>
+    <form onsubmit="registerUser(event)">
+      <div class="form-group">
+        <label>الاسم الكامل</label>
+        <input type="text" id="regName" placeholder="اسمك الكريم" required>
+      </div>
+      <div class="form-group">
+        <label>رقم الهاتف</label>
+        <input type="tel" id="regPhone" placeholder="+964 7XX XXX XXXX" required>
+      </div>
+      <div class="form-group">
+        <label>البريد الإلكتروني</label>
+        <input type="email" id="regEmail" placeholder="example@email.com" required>
+      </div>
+      <div class="form-group">
+        <label>كلمة المرور</label>
+        <input type="password" id="regPassword" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-primary full-width">إنشاء الحساب</button>
+    </form>
+    <p class="modal-switch">لديك حساب؟ <a onclick="switchModal('registerModal','loginModal')">سجل دخولك</a></p>
+    <div id="regError" class="error-msg"></div>
+  </div>
+</div>
+
+<!-- Admin Login Modal -->
+<div class="modal" id="adminModal">
+  <div class="modal-content glass-card admin-modal">
+    <button class="modal-close" onclick="closeModal('adminModal')">✕</button>
+    <div class="modal-header">
+      <div class="modal-icon">⚙️</div>
+      <h2>دخول الإدارة</h2>
+    </div>
+    <form onsubmit="adminLogin(event)">
+      <div class="form-group">
+        <label>إيميل الإدارة</label>
+        <input type="email" id="adminEmail" placeholder="oilshakal@gmail.com" required>
+      </div>
+      <div class="form-group">
+        <label>كلمة المرور</label>
+        <input type="password" id="adminPassword" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-gold full-width">دخول لوحة التحكم</button>
+    </form>
+    <div id="adminError" class="error-msg"></div>
+  </div>
+</div>
+
+<!-- Booking Modal -->
+<div class="modal" id="bookingModal">
+  <div class="modal-content glass-card large-modal">
+    <button class="modal-close" onclick="closeModal('bookingModal')">✕</button>
+    <div class="modal-header">
+      <div class="modal-icon">📅</div>
+      <h2>حجز موعد</h2>
+    </div>
+    <form onsubmit="submitBooking(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>الاسم الكامل</label>
+          <input type="text" id="bookName" placeholder="اسمك الكريم" required>
+        </div>
+        <div class="form-group">
+          <label>رقم الهاتف</label>
+          <input type="tel" id="bookPhone" placeholder="+964 7XX XXX XXXX" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>نوع السيارة</label>
+          <input type="text" id="bookCar" placeholder="مثال: تويوتا كامري 2020" required>
+        </div>
+        <div class="form-group">
+          <label>رقم اللوحة</label>
+          <input type="text" id="bookPlate" placeholder="رقم لوحة السيارة">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>الخدمة المطلوبة</label>
+        <select id="bookService" required>
+          <option value="">اختر الخدمة</option>
+          <option value="oil_change">تغيير الزيت</option>
+          <option value="filter_change">تبديل الفلاتر</option>
+          <option value="water_change">تبديل الماء</option>
+          <option value="full_maintenance">صيانة شاملة</option>
+          <option value="tire_inflation">نفخ العجلات</option>
+          <option value="inspection">فحص عام</option>
+          <option value="other">أخرى</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>التاريخ المفضل</label>
+          <input type="date" id="bookDate" required>
+        </div>
+        <div class="form-group">
+          <label>الوقت المفضل</label>
+          <select id="bookTime" required>
+            <option value="">اختر الوقت</option>
+            <option value="08:00">8:00 صباحاً</option>
+            <option value="09:00">9:00 صباحاً</option>
+            <option value="10:00">10:00 صباحاً</option>
+            <option value="11:00">11:00 صباحاً</option>
+            <option value="12:00">12:00 ظهراً</option>
+            <option value="13:00">1:00 مساءً</option>
+            <option value="14:00">2:00 مساءً</option>
+            <option value="15:00">3:00 مساءً</option>
+            <option value="16:00">4:00 مساءً</option>
+            <option value="17:00">5:00 مساءً</option>
+            <option value="18:00">6:00 مساءً</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>ملاحظات إضافية</label>
+        <textarea id="bookNotes" placeholder="أي ملاحظات أو معلومات إضافية..." rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn-primary full-width">تأكيد الحجز 🎯</button>
+    </form>
+    <div id="bookingSuccess" class="success-msg"></div>
+  </div>
+</div>
+
+<!-- Customer Dashboard -->
+<div class="modal dashboard-modal" id="customerDashboard">
+  <div class="modal-content glass-card xlarge-modal">
+    <button class="modal-close" onclick="closeModal('customerDashboard')">✕</button>
+    <div class="dashboard-header">
+      <h2>لوحة تحكم الزبون 👤</h2>
+      <button class="btn-outline small" onclick="logoutUser()">خروج</button>
+    </div>
+    <div class="dashboard-tabs">
+      <button class="tab-btn active" onclick="switchTab('profileTab')">بياناتي</button>
+      <button class="tab-btn" onclick="switchTab('appointmentsTab')">مواعيدي</button>
+      <button class="tab-btn" onclick="switchTab('newAppointmentTab')">حجز موعد جديد</button>
+    </div>
+    <div class="tab-content" id="profileTab">
+      <div class="profile-card glass">
+        <div class="profile-avatar">👤</div>
+        <div class="profile-info" id="customerProfileInfo">
+          <div class="profile-item"><strong>الاسم:</strong> <span id="custName">-</span></div>
+          <div class="profile-item"><strong>الإيميل:</strong> <span id="custEmail">-</span></div>
+          <div class="profile-item"><strong>الهاتف:</strong> <span id="custPhone">-</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-content hidden" id="appointmentsTab">
+      <div id="customerAppointments" class="appointments-list">
+        <p class="empty-state">لا يوجد مواعيد محجوزة بعد</p>
+      </div>
+    </div>
+    <div class="tab-content hidden" id="newAppointmentTab">
+      <form onsubmit="submitDashboardBooking(event)" class="compact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>نوع السيارة</label>
+            <input type="text" id="dashBookCar" placeholder="مثال: تويوتا كامري 2020" required>
+          </div>
+          <div class="form-group">
+            <label>رقم اللوحة</label>
+            <input type="text" id="dashBookPlate" placeholder="رقم اللوحة">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>الخدمة المطلوبة</label>
+          <select id="dashBookService" required>
+            <option value="">اختر الخدمة</option>
+            <option value="oil_change">تغيير الزيت</option>
+            <option value="filter_change">تبديل الفلاتر</option>
+            <option value="water_change">تبديل الماء</option>
+            <option value="full_maintenance">صيانة شاملة</option>
+            <option value="tire_inflation">نفخ العجلات</option>
+            <option value="inspection">فحص عام</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>التاريخ</label>
+            <input type="date" id="dashBookDate" required>
+          </div>
+          <div class="form-group">
+            <label>الوقت</label>
+            <select id="dashBookTime" required>
+              <option value="">اختر الوقت</option>
+              <option value="08:00">8:00 صباحاً</option>
+              <option value="09:00">9:00 صباحاً</option>
+              <option value="10:00">10:00 صباحاً</option>
+              <option value="11:00">11:00 صباحاً</option>
+              <option value="12:00">12:00 ظهراً</option>
+              <option value="14:00">2:00 مساءً</option>
+              <option value="16:00">4:00 مساءً</option>
+              <option value="18:00">6:00 مساءً</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn-primary">تأكيد الحجز</button>
+        <div id="dashBookSuccess" class="success-msg"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Admin Dashboard -->
+<div class="modal dashboard-modal" id="adminDashboard">
+  <div class="modal-content glass-card xlarge-modal admin-dash">
+    <button class="modal-close" onclick="closeModal('adminDashboard')">✕</button>
+    <div class="dashboard-header admin-header">
+      <h2>⚙️ لوحة التحكم الإدارية</h2>
+      <button class="btn-outline small" onclick="adminLogout()">خروج</button>
+    </div>
+    <div class="admin-stats-row">
+      <div class="admin-stat glass">
+        <span class="admin-stat-num" id="totalUsers">0</span>
+        <span>زبائن</span>
+      </div>
+      <div class="admin-stat glass">
+        <span class="admin-stat-num" id="totalBookings">0</span>
+        <span>حجوزات</span>
+      </div>
+      <div class="admin-stat glass">
+        <span class="admin-stat-num" id="pendingBookings">0</span>
+        <span>قيد الانتظار</span>
+      </div>
+    </div>
+    <div class="dashboard-tabs">
+      <button class="tab-btn active" onclick="switchAdminTab('usersTab')">الزبائن</button>
+      <button class="tab-btn" onclick="switchAdminTab('bookingsTab')">الحجوزات</button>
+      <button class="tab-btn" onclick="switchAdminTab('discountsTab')">الخصومات</button>
+      <button class="tab-btn" onclick="switchAdminTab('messagesTab')">الرسائل</button>
+    </div>
+    <div class="tab-content" id="usersTab">
+      <div id="usersList" class="admin-table-wrapper">
+        <p class="loading">جاري التحميل...</p>
+      </div>
+    </div>
+    <div class="tab-content hidden" id="bookingsTab">
+      <div id="bookingsList" class="admin-table-wrapper">
+        <p class="loading">جاري التحميل...</p>
+      </div>
+    </div>
+    <div class="tab-content hidden" id="discountsTab">
+      <div class="discount-form glass">
+        <h3>إضافة خصم جديد</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>اسم الخصم</label>
+            <input type="text" id="discountName" placeholder="مثال: خصم العيد">
+          </div>
+          <div class="form-group">
+            <label>نسبة الخصم %</label>
+            <input type="number" id="discountValue" placeholder="مثال: 20" min="1" max="100">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>تاريخ البداية</label>
+            <input type="date" id="discountStart">
+          </div>
+          <div class="form-group">
+            <label>تاريخ الانتهاء</label>
+            <input type="date" id="discountEnd">
+          </div>
+        </div>
+        <button class="btn-gold" onclick="addDiscount()">إضافة الخصم</button>
+      </div>
+      <div id="discountsList" class="admin-table-wrapper" style="margin-top:1.5rem;">
+        <p class="loading">جاري التحميل...</p>
+      </div>
+    </div>
+    <div class="tab-content hidden" id="messagesTab">
+      <div id="messagesList" class="admin-table-wrapper">
+        <p class="loading">جاري التحميل...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
